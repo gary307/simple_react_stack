@@ -1,0 +1,38 @@
+import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+
+class Home extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      users: []
+    };
+  }
+
+  componentDidMount() {
+    fetch("/users")
+      .then(res => res.json())
+      .then(users => this.setState({ users }));
+  }
+
+  body() {
+    return "this is a body";
+  }
+
+  render() {
+    let header = () => {
+      return "this is a header";
+    };
+    return (
+      <div style={{ textAlign: "center" }}>
+        <h1 className="app-header">{header()}</h1>
+        {this.state.users.map(user => <div key={user.id}>{user.username}</div>)}
+        <p>
+          {this.body()} {this.state.modal}
+        </p>
+      </div>
+    );
+  }
+}
+
+export default Home;

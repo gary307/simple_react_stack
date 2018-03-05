@@ -1,0 +1,52 @@
+{
+  "name": "react-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --port 3000",
+    "start":
+      "concurrently --kill-others \"webpack-dev-server --port 3000\" \"nodemon server/index.js\"",
+    "build": "webpack",
+    "server": "node server/index.js",
+    "start-prod": "concurrently \"webpack\" \"nodemon server/index.js\""
+  },
+  "proxy": "http://localhost:3001",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.10",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "img-loader": "^2.0.1",
+    "postcss": "^6.0.19",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.1",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "chunk": "0.0.2",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "image-webpack-loader": "^4.1.0",
+    "mongoose": "^5.0.7",
+    "path": "^0.12.7",
+    "postcss-nested": "^3.0.0",
+    "postcss-nesting": "^4.2.1",
+    "react": "^15.6.2",
+    "react-component": "0.0.0",
+    "react-dom": "^15.6.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-native": "^4.2.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.2"
+  }
+}

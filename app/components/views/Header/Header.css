@@ -1,0 +1,24 @@
+.header {
+  width: 100%;
+  background: black;
+  box-sizing: border-box;
+  padding: 20px;
+  color: white;
+  text-transform: uppercase;
+
+  &__wrapper {
+    max-width: 1000px;
+    box-sizing: border-box;
+    margin: 0px auto;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    display: flex;
+    a {
+      padding: 0px 10px;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+body {
+  background: rgba(247, 247, 247, 0.856);
+  margin: 0px;
+  padding: 0px;
+}
+
+.app {
+  text-align: left;
+  font-family: arial;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0px auto;
+  padding: 30px;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  background: white;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: normal;
+}
+
+p {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+a {
+  color: white;
+
+  &::visited {
+    color: white;
+  }
+}
