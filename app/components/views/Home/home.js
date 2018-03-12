@@ -1,4 +1,5 @@
 import "./home.css";
+import "../../../style.css";
 import React, { Component } from "react";
 
 class Home extends React.Component {
@@ -21,7 +22,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className="home">
+      <div className="home" key={1}>
         <h1>Welcome to my react app</h1>
 
         <p>

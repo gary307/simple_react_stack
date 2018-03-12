@@ -9,6 +9,12 @@ body {
   font-family: arial;
 }
 
+.animated-page-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
 .wrapper {
   max-width: 1000px;
   margin: 0px auto;
@@ -34,4 +40,79 @@ a {
   &::visited {
     color: white;
   }
+}
+
+.example-enter {
+  opacity: 0.01;
+  width: 0px;
+}
+
+.example-enter.example-enter-active {
+  opacity: 0;
+  width: 100px;
+  transition: 700ms;
+}
+
+.example-leave {
+  opacity: 1;
+  width: 100px;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  width: 0px;
+  transition: 700ms;
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
+
+.slide-enter {
+  opacity: 0.01;
+  margin-left: -200px;
+}
+
+.slide-enter.slide-enter-active {
+  opacity: 1;
+  margin-left: 0px;
+  transition: margin-left 0.2s ease-in, opacity 0.2s ease-in;
+}
+
+.slide-leave {
+  opacity: 1;
+  margin-left: 0px;
+}
+
+.slide-leave.slide-leave-active {
+  opacity: 0.01;
+  margin-left: 200px;
+  transition: margin-left 0.7s ease-in, opacity 0.7s ease-in;
+}
+
+.slide-appear {
+  opacity: 0.01;
+  margin-left: -200px;
+}
+
+.slide-appear.slide-appear-active {
+  opacity: 1;
+  margin-left: 0px;
+  transition: margin-left 0.2s ease-in, opacity 0.2s ease-in;
+}
+
+.slide-exit {
+  opacity: 1;
+  margin-left: 0px;
+}
+
+.slide-exit.slide-exit-active {
+  opacity: 1;
+  margin-left: 0px;
+  transition: margin-left 0.2s ease-in, opacity 0.2s ease-in;
 }

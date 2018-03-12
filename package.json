@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --port 3000",
-    "start":
-      "concurrently --kill-others \"webpack-dev-server --port 3000\" \"nodemon server/index.js\"",
+    "start": "concurrently --kill-others \"webpack-dev-server --port 3000\" \"nodemon server/index.js\"",
     "build": "webpack",
     "server": "node server/index.js",
     "start-prod": "concurrently \"webpack\" \"nodemon server/index.js\""
@@ -31,6 +30,7 @@
     "webpack-dev-server": "^2.11.1"
   },
   "dependencies": {
+    "babel-preset-env": "^1.6.1",
     "body-parser": "^1.18.2",
     "chunk": "0.0.2",
     "concurrently": "^3.5.1",
@@ -41,11 +41,13 @@
     "postcss-nested": "^3.0.0",
     "postcss-nesting": "^4.2.1",
     "react": "^15.6.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-component": "0.0.0",
     "react-dom": "^15.6.2",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-native": "^4.2.0",
+    "react-transition-group": "^2.2.1",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.2"
   }

@@ -19,6 +19,7 @@ class Header extends React.Component {
             <span>
               <Link to="/">HOME</Link>
               <Link to="/form">FORM</Link>
+              <Link to="/todo">Todo</Link>
             </span>
           </div>
         </div>

@@ -114,16 +114,16 @@ class form extends React.Component {
       return "this is a header";
     };
     return (
-      <div style={{ textAlign: "center" }}>
-        <button bsStyle="success" bsSize="small" onClick={this.onClick}>
+      <div style={{ textAlign: "center" }} key={2}>
+        <button bsSize="small" onClick={this.onClick}>
           Add New Expense
         </button>
 
-        <button bsStyle="success" bsSize="small" onClick={this.onUpdate}>
+        <button bsSize="small" onClick={this.onUpdate}>
           Update New Expense
         </button>
 
-        <button bsStyle="success" bsSize="small" onClick={this.onGet}>
+        <button bsSize="small" onClick={this.onGet}>
           latest data
         </button>
 

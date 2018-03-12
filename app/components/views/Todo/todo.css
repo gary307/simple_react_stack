@@ -1,0 +1,18 @@
+.todo {
+  &__item {
+    opacity: 0;
+  }
+
+  &__item_show {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+
+  &__uncrossed {
+  }
+
+  &__crossed {
+    text-decoration: line-through;
+    color: green;
+  }
+}
