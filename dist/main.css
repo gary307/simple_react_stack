@@ -132,6 +132,11 @@ a::visited {
   .form__selected {
     background-color: grey;
   }
+  .form__delete_btn {
+    float: right;
+    color: white;
+    position: absolute;
+  }
 .todo__item {
     opacity: 0;
   }

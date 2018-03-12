@@ -6,4 +6,10 @@
   &__selected {
     background-color: grey;
   }
+
+  &__delete_btn {
+    float: right;
+    color: white;
+    position: absolute;
+  }
 }

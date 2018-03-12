@@ -21,6 +21,7 @@ class form extends React.Component {
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onGet = this.onGet.bind(this);
+    this.onDelete = this.onDelete.bind(this);
     this.insertNewExpense = this.insertNewExpense.bind(this);
   }
 
@@ -46,8 +47,9 @@ class form extends React.Component {
     this.onGet();
   }
 
-  onUpdate(e) {
-    this.update(this);
+  onDelete(e) {
+    this.deleteItem(this);
+    this.onGet();
   }
 
   onGet(e) {
@@ -98,31 +100,11 @@ class form extends React.Component {
   }
 
   deleteItem(e) {
-    axios.post("/delete", this.state.selectedId).then(function(response) {
-      this.setState({
-        messageFromServer: response.message
-      });
-    });
-  }
-
-  selectExpense(id) {
-    this.setState({
-      currentId: id
-    });
-
-    console.log(id);
-  }
-
-  update(e) {
     axios
       .post(
-        "/update",
+        "/delete",
         querystring.stringify({
-          _id: e.state.id,
-          description: e.state.description,
-          amount: e.state.amount,
-          month: e.state.month,
-          year: e.state.year
+          id: e.state.currentId
         }),
         {
           headers: {
@@ -131,10 +113,19 @@ class form extends React.Component {
         }
       )
       .then(function(response) {
-        e.setState({
-          messageFromServer: response.data
-        });
+        console.log(response);
+        // this.setState({
+        //   messageFromServer: response.message
+        // });
       });
+  }
+
+  selectExpense(id) {
+    this.setState({
+      currentId: id
+    });
+
+    console.log(id);
   }
 
   body() {
@@ -155,11 +146,6 @@ class form extends React.Component {
         <button bsSize="small" onClick={this.onUpdate}>
           Update New Expense
         </button>
-
-        <button onClick={this.deleteItem.bind(this)}>
-          {" "}
-          Delete selected Expense
-        </button>
         <br />
         <br />
         {this.state.messageFromServer}
@@ -175,6 +161,15 @@ class form extends React.Component {
             <span className="form__data">amount:£{record.amount} </span>
             <span className="form__data">month:{record.month} </span>
             <span className="form__data">year:{record.year}</span>
+
+            {record.id === this.state.currentId ? (
+              <button className="form__delete_btn" onClick={this.onDelete}>
+                {" "}
+                Delete selected Expense
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         ))}
       </div>

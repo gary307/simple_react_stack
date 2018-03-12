@@ -27745,6 +27745,7 @@ var form = function (_React$Component) {
     _this.handleSelectChange = _this.handleSelectChange.bind(_this);
     _this.onClick = _this.onClick.bind(_this);
     _this.onGet = _this.onGet.bind(_this);
+    _this.onDelete = _this.onDelete.bind(_this);
     _this.insertNewExpense = _this.insertNewExpense.bind(_this);
     return _this;
   }
@@ -27775,9 +27776,10 @@ var form = function (_React$Component) {
       this.onGet();
     }
   }, {
-    key: "onUpdate",
-    value: function onUpdate(e) {
-      this.update(this);
+    key: "onDelete",
+    value: function onDelete(e) {
+      this.deleteItem(this);
+      this.onGet();
     }
   }, {
     key: "onGet",
@@ -27826,10 +27828,17 @@ var form = function (_React$Component) {
   }, {
     key: "deleteItem",
     value: function deleteItem(e) {
-      _axios2.default.post("/delete", this.state.selectedId).then(function (response) {
-        this.setState({
-          messageFromServer: response.message
-        });
+      _axios2.default.post("/delete", querystring.stringify({
+        id: e.state.currentId
+      }), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      }).then(function (response) {
+        console.log(response);
+        // this.setState({
+        //   messageFromServer: response.message
+        // });
       });
     }
   }, {
@@ -27840,25 +27849,6 @@ var form = function (_React$Component) {
       });
 
       console.log(id);
-    }
-  }, {
-    key: "update",
-    value: function update(e) {
-      _axios2.default.post("/update", querystring.stringify({
-        _id: e.state.id,
-        description: e.state.description,
-        amount: e.state.amount,
-        month: e.state.month,
-        year: e.state.year
-      }), {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }).then(function (response) {
-        e.setState({
-          messageFromServer: response.data
-        });
-      });
     }
   }, {
     key: "body",
@@ -27891,12 +27881,6 @@ var form = function (_React$Component) {
           { bsSize: "small", onClick: this.onUpdate },
           "Update New Expense"
         ),
-        _react2.default.createElement(
-          "button",
-          { onClick: this.deleteItem.bind(this) },
-          " ",
-          "Delete selected Expense"
-        ),
         _react2.default.createElement("br", null),
         _react2.default.createElement("br", null),
         this.state.messageFromServer,
@@ -27928,7 +27912,13 @@ var form = function (_React$Component) {
               { className: "form__data" },
               "year:",
               record.year
-            )
+            ),
+            record.id === _this2.state.currentId ? _react2.default.createElement(
+              "button",
+              { className: "form__delete_btn", onClick: _this2.onDelete },
+              " ",
+              "Delete selected Expense"
+            ) : ""
           );
         })
       );

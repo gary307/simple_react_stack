@@ -45,20 +45,6 @@ router.route("/insert").post(function(req, res) {
   });
 });
 
-router.route("/update").post(function(req, res) {
-  const doc = {
-    description: req.body.description,
-    amount: req.body.amount,
-    month: req.body.month,
-    year: req.body.year
-  };
-  console.log(doc);
-  Expense.update({ _id: req.body._id }, doc, function(err, result) {
-    if (err) res.send(err);
-    res.send("Expense successfully updated!");
-  });
-});
-
 router.get("/getAll", function(req, res) {
   Expense.find().exec((err, Expense) => {
     if (err) {
@@ -79,8 +65,9 @@ router.get("/getAll", function(req, res) {
   });
 });
 
-router.get("/delete", function(req, res) {
-  Expense.findByIdAndRemove(req.params.id, (err, expense) => {
+router.route("/delete").post(function(req, res) {
+  // return res.json({ success: req.body.id });
+  Expense.findByIdAndRemove(req.body.id, (err, expense) => {
     if (err) {
       return res.json({ success: false, message: "some Error" });
     }
