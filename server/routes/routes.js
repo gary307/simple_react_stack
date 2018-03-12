@@ -60,11 +60,35 @@ router.route("/update").post(function(req, res) {
 });
 
 router.get("/getAll", function(req, res) {
-  Expense.find(),
-    function(err, expenses) {
-      if (err) res.send(err);
-      res.json(expenses);
-    };
+  Expense.find().exec((err, Expense) => {
+    if (err) {
+      return res.json({ success: false, message: "Some Error" });
+    }
+    if (Expense.length) {
+      return res.json({
+        success: true,
+        message: "Todo fetched by id successfully",
+        Expense
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: "Todo with the given id not found"
+      });
+    }
+  });
+});
+
+router.get("/delete", function(req, res) {
+  Expense.findByIdAndRemove(req.params.id, (err, expense) => {
+    if (err) {
+      return res.json({ success: false, message: "some Error" });
+    }
+    return res.json({
+      success: true,
+      message: expense + "deleted successfully"
+    });
+  });
 });
 
 module.exports = router;

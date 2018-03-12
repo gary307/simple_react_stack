@@ -19,7 +19,7 @@ app.listen(3001, function() {
 
 //database connection for mongodb
 // mongoose.connect("mongodb+srv://Gary:apy9bct!@test0-f69bm.mongodb.net/test");
-// mongoose.connect("mongodb://localhost/mern-starter");
+mongoose.connect("mongodb://localhost/mern-starter");
 
 app.use("/", router);
 

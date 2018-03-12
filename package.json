@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --port 3000",
-    "start": "concurrently --kill-others \"webpack-dev-server --port 3000\" \"nodemon server/index.js\"",
+    "start":
+      "concurrently --kill-others \"webpack-dev-server --port 3000\" \"nodemon server/index.js\"",
     "build": "webpack",
     "server": "node server/index.js",
-    "start-prod": "concurrently \"webpack\" \"nodemon server/index.js\""
+    "start-prod": "concurrently \"webpack -w\" \"nodemon server/index.js\""
   },
-  "proxy": "http://localhost:3001",
+  "proxy": "https://localhost:3001",
   "author": "",
   "license": "ISC",
   "devDependencies": {

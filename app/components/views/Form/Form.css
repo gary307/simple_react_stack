@@ -1,0 +1,9 @@
+.form {
+  &__data {
+    padding: 10px;
+  }
+
+  &__selected {
+    background-color: grey;
+  }
+}
