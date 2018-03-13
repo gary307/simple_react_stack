@@ -17,12 +17,13 @@ class form extends React.Component {
       records: [""],
       currentId: ""
     };
-
     this.handleSelectChange = this.handleSelectChange.bind(this);
+
     this.onClick = this.onClick.bind(this);
     this.onGet = this.onGet.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.insertNewExpense = this.insertNewExpense.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -113,10 +114,9 @@ class form extends React.Component {
         }
       )
       .then(function(response) {
-        console.log(response);
-        // this.setState({
-        //   messageFromServer: response.message
-        // });
+        e.setState({
+          messageFromServer: response.data.message
+        });
       });
   }
 
@@ -126,6 +126,17 @@ class form extends React.Component {
     });
 
     console.log(id);
+  }
+
+  handleChange(value, e) {
+    if (value === "amount") {
+      console.log(value);
+      this.setState({ amount: e.target.value });
+    } else if (value === "month") {
+      this.setState({ month: e.target.value });
+    } else if (value === "year") {
+      this.setState({ year: e.target.value });
+    }
   }
 
   body() {
@@ -139,12 +150,39 @@ class form extends React.Component {
     return (
       <div style={{ textAlign: "center" }} key={2}>
         <p>expense form (turn on mongodb to use this page)</p>
+
+        <form onSubmit={this.onClick}>
+          <label>
+            Amount
+            <input
+              type="text"
+              value={this.state.amount}
+              onChange={this.handleChange.bind(this, "amount")}
+            />
+          </label>
+
+          <label>
+            Month
+            <input
+              type="text"
+              value={this.state.month}
+              onChange={this.handleChange.bind(this, "month")}
+            />
+          </label>
+
+          <label>
+            Year
+            <input
+              type="text"
+              value={this.state.year}
+              onChange={this.handleChange.bind(this, "year")}
+            />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+
         <button bsSize="small" onClick={this.onClick}>
           Add New Expense
-        </button>
-
-        <button bsSize="small" onClick={this.onUpdate}>
-          Update New Expense
         </button>
         <br />
         <br />

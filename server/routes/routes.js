@@ -6,17 +6,6 @@ var Expense = require("../models/Expense");
 router.route("/test1").get(function(req, res, next) {
   // Comment out this line:
   res.send("api is working");
-  // And insert something like this instead:
-  // res.json([
-  //   {
-  //     id: 1,
-  //     username: "samsepi0l"
-  //   },
-  //   {
-  //     id: 2,
-  //     username: "D0loresH4ze"
-  //   }
-  // ]);
 });
 
 router.route("/test2").get(function(req, res, next) {
@@ -73,7 +62,7 @@ router.route("/delete").post(function(req, res) {
     }
     return res.json({
       success: true,
-      message: expense + "deleted successfully"
+      message: "deleted successfully"
     });
   });
 });

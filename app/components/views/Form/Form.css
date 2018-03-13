@@ -5,6 +5,7 @@
 
   &__selected {
     background-color: grey;
+    color: white;
   }
 
   &__delete_btn {

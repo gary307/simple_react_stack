@@ -27741,12 +27741,13 @@ var form = function (_React$Component) {
       records: [""],
       currentId: ""
     };
-
     _this.handleSelectChange = _this.handleSelectChange.bind(_this);
+
     _this.onClick = _this.onClick.bind(_this);
     _this.onGet = _this.onGet.bind(_this);
     _this.onDelete = _this.onDelete.bind(_this);
     _this.insertNewExpense = _this.insertNewExpense.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
     return _this;
   }
 
@@ -27835,10 +27836,9 @@ var form = function (_React$Component) {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       }).then(function (response) {
-        console.log(response);
-        // this.setState({
-        //   messageFromServer: response.message
-        // });
+        e.setState({
+          messageFromServer: response.data.message
+        });
       });
     }
   }, {
@@ -27849,6 +27849,18 @@ var form = function (_React$Component) {
       });
 
       console.log(id);
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(value, e) {
+      if (value === "amount") {
+        console.log(value);
+        this.setState({ amount: e.target.value });
+      } else if (value === "month") {
+        this.setState({ month: e.target.value });
+      } else if (value === "year") {
+        this.setState({ year: e.target.value });
+      }
     }
   }, {
     key: "body",
@@ -27872,14 +27884,44 @@ var form = function (_React$Component) {
           "expense form (turn on mongodb to use this page)"
         ),
         _react2.default.createElement(
-          "button",
-          { bsSize: "small", onClick: this.onClick },
-          "Add New Expense"
+          "form",
+          { onSubmit: this.onClick },
+          _react2.default.createElement(
+            "label",
+            null,
+            "Amount",
+            _react2.default.createElement("input", {
+              type: "text",
+              value: this.state.amount,
+              onChange: this.handleChange.bind(this, "amount")
+            })
+          ),
+          _react2.default.createElement(
+            "label",
+            null,
+            "Month",
+            _react2.default.createElement("input", {
+              type: "text",
+              value: this.state.month,
+              onChange: this.handleChange.bind(this, "month")
+            })
+          ),
+          _react2.default.createElement(
+            "label",
+            null,
+            "Year",
+            _react2.default.createElement("input", {
+              type: "text",
+              value: this.state.year,
+              onChange: this.handleChange.bind(this, "year")
+            })
+          ),
+          _react2.default.createElement("input", { type: "submit", value: "Submit" })
         ),
         _react2.default.createElement(
           "button",
-          { bsSize: "small", onClick: this.onUpdate },
-          "Update New Expense"
+          { bsSize: "small", onClick: this.onClick },
+          "Add New Expense"
         ),
         _react2.default.createElement("br", null),
         _react2.default.createElement("br", null),
