@@ -8,9 +8,18 @@ class Todo extends React.Component {
     super();
     this.state = {
       todos: [
-        { item: "go to the shop", checked: false },
-        { item: "go to the shop", checked: false },
-        { item: "go to the shop", checked: false }
+        {
+          item: "go to the shop",
+          checked: false
+        },
+        {
+          item: "go to the shop",
+          checked: false
+        },
+        {
+          item: "go to the shop",
+          checked: false
+        }
       ],
       currentTodo: ""
     };
@@ -32,20 +41,19 @@ class Todo extends React.Component {
 
   handleSubmit(event) {
     let todos = this.state.todos;
-    let newTodos = [...todos, { item: this.state.currentTodo, checked: false }];
+    let newTodos = [
+      ...todos,
+      {
+        item: this.state.currentTodo,
+        checked: false
+      }
+    ];
 
     this.setState({
       todos: newTodos
     });
     event.preventDefault();
   }
-
-  // addTodo(todo) {
-  //   let todos = this.state.todos;
-  //   this.setState({
-  //     todos: todos.push(this.state.currentTodo)
-  //   });
-  // }
 
   toggleTodo(todo) {
     let toggledTodo = this.state.todos;
@@ -67,7 +75,9 @@ class Todo extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({ currentTodo: event.target.value });
+    this.setState({
+      currentTodo: event.target.value
+    });
   }
 
   body() {
@@ -77,10 +87,8 @@ class Todo extends React.Component {
   render() {
     return (
       <div className="todo" key={1}>
-        <h1>Todo List</h1>
-
-        <p>Add todo:</p>
-
+        <h1> Todo List </h1>
+        <p> Add todo: </p>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
@@ -88,13 +96,13 @@ class Todo extends React.Component {
               type="text"
               value={this.state.currentTodo}
               onChange={this.handleChange}
-            />
-          </label>
+            />{" "}
+          </label>{" "}
           <input type="submit" value="Submit" />
         </form>
-
-        <p>Below is a list of todo items:</p>
+        <p> Below is a list of todo items: </p>{" "}
         <ul>
+          {" "}
           {this.state.todos.map((todo, key) => {
             return (
               <span>
@@ -107,13 +115,13 @@ class Todo extends React.Component {
                     this.item = li;
                   }}
                 >
-                  {todo.item}
-                </li>
-                <button onClick={this.todoRemove.bind(this, key)}>X</button>
+                  {todo.item}{" "}
+                </li>{" "}
+                <button onClick={this.todoRemove.bind(this, key)}> X </button>{" "}
               </span>
             );
-          })}
-        </ul>
+          })}{" "}
+        </ul>{" "}
       </div>
     );
   }

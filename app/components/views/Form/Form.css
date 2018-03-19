@@ -11,6 +11,7 @@
   &__delete_btn {
     float: right;
     color: white;
+    background: grey;
     position: absolute;
   }
 }

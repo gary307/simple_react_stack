@@ -4,6 +4,7 @@ import Form from "./components/views/Form/form.js";
 import "./style.css";
 import NotFound from "./components/views/notFound/notFound.js";
 import Todo from "./components/views/Todo/Todo.js";
+import TodoRedux from "./components/views/TodoRedux/TodoRedux.js";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group"; // ES6
 
@@ -32,6 +33,7 @@ const Routes = () => {
         <Route exact path="/" component={pageComponent(Home)} />
         <Route path="/form" component={pageComponent(Form)} />
         <Route path="/todo" component={pageComponent(Todo)} />
+        <Route path="/todo_redux" component={pageComponent(TodoRedux)} />
         <Route path="*" component={pageComponent(Form)} />
       </Switch>
     </div>

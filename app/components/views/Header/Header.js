@@ -20,6 +20,7 @@ class Header extends React.Component {
               <Link to="/">HOME</Link>
               <Link to="/form">FORM</Link>
               <Link to="/todo">Todo</Link>
+              <Link to="/todo_redux">Todo Redux</Link>
             </span>
           </div>
         </div>
