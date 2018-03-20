@@ -14,6 +14,16 @@ const todos = (state = [], action) => {
       });
 
       return updatedState;
+
+    case "GET_TODO":
+      console.log(action.item[0].fields.todo);
+
+      const fetchedTodos = action.item.map(item => {
+        return { value: item.fields.todo };
+      });
+
+      return [...state, ...fetchedTodos];
+
     default:
       return state;
   }

@@ -10,6 +10,7 @@ import { createStore, applyMiddleware } from "redux";
 import rootReducers from "./redux/rootReducer.js";
 import todos from "./redux/reducers/todo.js";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
 
 const initialState = {
   todos: [{ id: 0, value: "a todo item" }]
@@ -28,9 +29,7 @@ export default class App extends React.Component {
         store={createStore(
           rootReducers,
           initialState,
-          applyMiddleware(thunk),
-          window.__REDUX_DEVTOOLS_EXTENSION__ &&
-            window.__REDUX_DEVTOOLS_EXTENSION__()
+          composeWithDevTools(applyMiddleware(thunk))
         )}
       >
         <div className="app">

@@ -2,7 +2,12 @@ import "./todoRedux.css";
 import "../../../style.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addTodo, removeTodo } from "../../../redux/actions/index.js";
+import {
+  addTodo,
+  removeTodo,
+  fetchTodos
+} from "../../../redux/actions/index.js";
+import * as contentful from "contentful";
 
 class TodoModule extends React.Component {
   constructor() {
@@ -10,6 +15,10 @@ class TodoModule extends React.Component {
     this.state = {
       input: { value: "a new item" }
     };
+  }
+
+  componentDidMount() {
+    this.props.fetchTodos();
   }
 
   handleChange(e) {
@@ -46,7 +55,7 @@ class TodoModule extends React.Component {
         <ul>
           {this.props.todos.map((todo, id) => (
             <li key={id}>
-              {todo.value}{" "}
+              {todo.value}
               <button onClick={this.removeTodo.bind(this, id)}>X</button>
             </li>
           ))}
@@ -71,6 +80,9 @@ const mapDispatchToProps = dispatch => {
     },
     onRemoveTodoClick: id => {
       dispatch(removeTodo(id));
+    },
+    fetchTodos: () => {
+      dispatch(fetchTodos());
     }
   };
 };
