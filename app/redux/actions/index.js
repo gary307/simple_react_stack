@@ -7,8 +7,6 @@ var client = createClient({
     "CFPAT-92ccbdf784ddfec4f0a9d97fc00a27e55484f1989ed17b26720e770e822023da"
 });
 
-let newEntry = {};
-
 var space = client.getSpace("hd9erw94uohu");
 
 export const addTodo = item => ({
@@ -18,10 +16,30 @@ export const addTodo = item => ({
   }
 });
 
-export const removeTodo = item => ({
+export const deleteTodo = item => ({
   type: "REMOVE_TODO",
   id: item
 });
+
+export const removeTodo = item => {
+  return dispatch => {
+    space.then(space => {
+      space.getEntries("todos").then(todos => {
+        console.log(todos.items[item]);
+
+        console.log(todos.items[item].sys.id);
+
+        return space.getEntry(todos.items[item].sys.id).then(entry => {
+          entry.unpublish().then(() => {
+            entry.delete();
+          });
+        });
+      });
+    });
+
+    dispatch(deleteTodo(item));
+  };
+};
 
 const getTodos = item => ({
   type: "GET_TODO",
@@ -42,13 +60,17 @@ export const fetchTodos = () => {
 export const updateTodos = item => {
   return dispatch => {
     space.then(space => {
-      space.getEntry("5loxCLc55mCE0IIMUKMeSK").then(newTodo => {
-        console.log("new todo", item);
-        newTodo.fields.todo["en-GB"] = item.value;
-        return space.createEntry("todos", newTodo).then(newEntry => {
+      return space
+        .createEntry("todos", {
+          fields: {
+            todo: {
+              "en-GB": item.value
+            }
+          }
+        })
+        .then(newEntry => {
           newEntry.publish();
         });
-      });
     });
     dispatch(addTodo(item));
   };

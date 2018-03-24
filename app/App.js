@@ -13,7 +13,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 const initialState = {
-  todos: [{ id: 0, value: "a todo item" }]
+  // todos: [{ id: 0, value: "a todo item" }]
 };
 
 let store = createStore(todos);

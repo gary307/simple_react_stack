@@ -29,10 +29,6 @@ class TodoModule extends React.Component {
   }
 
   submit(e) {
-    // this.props.onTodoClick({
-    //   value: this.state.input.value
-    // });
-
     this.props.updateTodos({ value: this.state.input.value });
 
     e.preventDefault();
@@ -63,10 +59,6 @@ class TodoModule extends React.Component {
             </li>
           ))}
         </ul>
-
-        <button onClick={this.props.updateTodos.bind(this.state.input.value)}>
-          Push
-        </button>
       </div>
     );
   }
