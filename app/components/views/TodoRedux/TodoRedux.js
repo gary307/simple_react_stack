@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
   addTodo,
   removeTodo,
-  fetchTodos
+  fetchTodos,
+  updateTodos
 } from "../../../redux/actions/index.js";
 import * as contentful from "contentful";
 
@@ -28,9 +29,11 @@ class TodoModule extends React.Component {
   }
 
   submit(e) {
-    this.props.onTodoClick({
-      value: this.state.input.value
-    });
+    // this.props.onTodoClick({
+    //   value: this.state.input.value
+    // });
+
+    this.props.updateTodos({ value: this.state.input.value });
 
     e.preventDefault();
   }
@@ -60,6 +63,10 @@ class TodoModule extends React.Component {
             </li>
           ))}
         </ul>
+
+        <button onClick={this.props.updateTodos.bind(this.state.input.value)}>
+          Push
+        </button>
       </div>
     );
   }
@@ -83,6 +90,10 @@ const mapDispatchToProps = dispatch => {
     },
     fetchTodos: () => {
       dispatch(fetchTodos());
+    },
+
+    updateTodos: item => {
+      dispatch(updateTodos(item));
     }
   };
 };

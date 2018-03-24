@@ -36,6 +36,7 @@
     "body-parser": "^1.18.2",
     "chunk": "0.0.2",
     "concurrently": "^3.5.1",
+    "contentful-management": "^4.2.2",
     "express": "^4.16.2",
     "history": "^4.7.2",
     "image-webpack-loader": "^4.1.0",

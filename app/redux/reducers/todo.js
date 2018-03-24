@@ -16,10 +16,11 @@ const todos = (state = [], action) => {
       return updatedState;
 
     case "GET_TODO":
-      console.log(action.item[0].fields.todo);
-
       const fetchedTodos = action.item.map(item => {
-        return { value: item.fields.todo };
+        console.log(item.fields.todo["en-GB"]);
+        return {
+          value: item.fields.todo["en-GB"]
+        };
       });
 
       return [...state, ...fetchedTodos];
